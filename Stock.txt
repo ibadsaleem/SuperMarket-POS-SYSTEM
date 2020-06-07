@@ -1,0 +1,18 @@
+ID: 1   Name: Nestle Nido Fortified 1Kg Price: 545      Quantity: 100
+ID: 2   Name: Shan Chaat Masala 250g    Price: 97       Quantity: 145
+ID: 3   Name: Olpers 8x1.5ltr Carton    Price: 1400     Quantity: 14
+ID: 4   Name: Nurpur 12x1 ltr carton    Price: 1520     Quantity: 14
+ID: 5   Name: Lays French Cheese 340g   Price: 65       Quantity: 125
+ID: 6   Name: Prince Biscuit 1x24 Packs Price: 120      Quantity: 32
+ID: 7   Name: Moong Daal 1kg    Price: 145      Quantity: 65
+ID: 8   Name: Rice 5kg  Price: 870      Quantity: 42
+ID: 9   Name: Chakki Atta 10kg  Price: 820      Quantity: 67
+ID: 10  Name: Eva Canola Oil 1x5 ltr    Price: 1125     Quantity: 36
+ID: 11  Name: Jam e Shireen 500ml       Price: 345      Quantity: 85
+ID: 12  Name: Pakola Milk Strawberry 1x24       Price: 690      Quantity: 5
+ID: 13  Name: Dairy Milk 250g Bar       Price: 146      Quantity: 55
+ID: 14  Name: Shaan Lal Mirch 250g      Price: 85       Quantity: 22
+ID: 15  Name: Redbull 1x12 Cans Price: 1400     Quantity: 36
+ID: 16  Name: Maida 1kg Price: 95       Quantity: 100
+ID: 17  Name: Baisan 1.5kg      Price: 150      Quantity: 4
+ID: 18  Name: Sugar 5kg Price: 420      Quantity: 65

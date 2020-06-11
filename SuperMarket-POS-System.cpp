@@ -19,7 +19,7 @@ class Exception_handling{
 			
 			try{
 				while(numc!= 0){
-					numc = numc/10;
+					numc = numc/10;	
 					digits+= 1;
 				}
 				if(digits == 16)
@@ -51,7 +51,7 @@ class Exception_handling{
 			
 			cnt = (dig-1);
 			while(cnt != -1){
-				val = cell[cnt] - 48;
+				val = cell[cnt] - 48;	
 				num = num + (val * mult);
 				mult*= 10;
 				cnt--;
@@ -164,7 +164,7 @@ class Exception_handling{
 				if( !(id>=750) && (id<754) )
 					throw id;
 				else
-				return true;
+					return true;
 			}
 			catch(...){
 				cout<< endl<< "EXCEPTION OCCURRED!"<< endl;
@@ -184,18 +184,18 @@ class Exception_handling{
 			try{
 				for(int cnt=0;cnt<len;cnt++){
 					if( (email[cnt] != ' ') && (email[cnt] != '\0') ){
-						if((email[cnt]=='@' && email[cnt+1]=='g' && email[cnt+2]=='m' &&email[cnt+3]=='a' &&email[cnt+4]=='i' &&email[cnt+5]=='l' &&email[cnt+6]=='.' &&email[cnt+7]=='c' &&email[cnt+8]=='o' &&email[cnt+9]=='m')){
+						if((email[cnt]=='@' && email[cnt+1]=='g' && email[cnt+2]=='m' && email[cnt+3]=='a' && email[cnt+4]=='i' && email[cnt+5]=='l' && email[cnt+6]=='.' && email[cnt+7]=='c' && email[cnt+8]=='o' && email[cnt+9]=='m')){
 							return true;
 						}	
 						else 
-						fg=1;
+							fg = 1;
 					}
 				}
 			
-			if (fg == 1){
-				string msg = "Kindly Enter a Valid EMAIL";
-				throw msg;
-			}
+				if (fg == 1){
+					string msg = "Kindly Enter a Valid EMAIL";
+					throw msg;
+				}
 				
 			}
 			catch(string msg){
@@ -206,7 +206,7 @@ class Exception_handling{
 			}	
 		}
 		
-		static int getexception(){
+		int getexception()	const{
 			return tot_exceptions;
 		}
 };
@@ -235,7 +235,7 @@ class CreditCard{
 			total = a + tax;
 		}
 		
-		bool Payment(const long long CC_N, const int pass, double amount){
+		bool Payment(const long long CC_N, const int pass, double amount){										//function to add the amount of bill as balance in the desired credit card 
 			ifstream fin;
 			ofstream fout;
 			int count = 0;
@@ -255,7 +255,7 @@ class CreditCard{
 		            		Temp.addtax(amount);
 							cout<< endl<< endl<< "Payment of Rs."<< Temp.total<<" Successful against this Credit Card!"<< endl<< endl<< endl;
 							Temp.amount+= Temp.total;
-							count = 1;
+							count = 1;			//flag
 							fout.write((char *)&Temp, sizeof(Temp));		
 		        		}
 		        		else
@@ -264,7 +264,7 @@ class CreditCard{
 		        fin.close();
 		        fout.close();
 		        
-				remove("BankTemp.dat");
+				remove("Bank.dat");							//this statement updated
 		        rename("BankTemp.dat", "Bank.dat");
 		        fflush(stdin);
 			}
@@ -281,7 +281,7 @@ class CreditCard{
 };
 
 //function for password security:
-void InputPassword(char p[20]){ 
+void InputPassword(char p[20]){ 																						//function to take password in the form of asterisks
 	char ch;
 	int i = 0;
 	
@@ -298,15 +298,15 @@ void InputPassword(char p[20]){
 			}
 		}
 		else{
-			p[i]=ch;
+			p[i] = ch;
 			cout << "*";
 			i++;
 		}
 	}
 }
 
-//converting char to int:
-float formnum(char pass[5]){
+//converting an array of char to float:
+float formnum(char pass[5]){																						
 	int num = 0;
 	int cnt = 0;
 	float val = 0;
@@ -367,7 +367,7 @@ class Items{
 			cout<< (*this);
 		}
 		
-		void showproducts(int){
+		void showproducts(int){																		//function to display the info of product in the bill
 			cout << "ID: " << id;
 			cout << "\tName: " << name;
 			cout << "\tPrice: " << price<< endl;
@@ -388,7 +388,7 @@ class Items{
 			this->price = price;
 		}
 	    
-	    bool storeprod()	const{								
+	    bool storeprod()	const{																	//to add a new item in the of inventory	(2 files)			
 		    if( (price == 0) && (name == "-") ){
 		        cout << "PRODUCT NOT INITIALISED"<< endl;
 		        return false;
@@ -402,12 +402,12 @@ class Items{
 		        fout2.write((char *)this, sizeof(*this));
 		        
 		        fout.close();
-		        fout.close();
+		        fout2.close();
 		       	return true;		
 		    }
 		}
 		
-		void deletepro(const long ID){
+		void deletepro(const long ID){																//to delete a new item in the of inventory	(2 files)	
 		    ifstream fin;
 		    ofstream fout, fout2;
 		    fin.open("Inventory.dat");
@@ -442,7 +442,7 @@ class Items{
 		    }
 		}
 		
-		bool setid(){
+		bool setid(){																			//function to assign ID to each item of the inventory, 1st ID = 1
 			ifstream fin;
 			Items Temp;
 			
@@ -465,7 +465,7 @@ class Items{
 		}
 		
 		//operator overloading:
-		friend operator <<(ostream &out, Items Temp){
+		friend operator <<(ostream &out, Items Temp){														//to display the information of a specific product
 			out << "ID: " << Temp.id;
 			out << "\tName: " << Temp.name;
 			out << "\tPrice: " << Temp.price;
@@ -484,7 +484,7 @@ class Inventory{
 			Item = NULL;	
 		}
 		
-		void setitem_ptr(Items &Itemm){		
+		void setitem_ptr(Items &Itemm){																//to set the pointer of each item which we want to work on from the inventory
 			Item = &Itemm;
 		}
 		
@@ -498,8 +498,7 @@ class Inventory{
 			
 			fin.open("Inventory.dat",ios::in);
 			fin.read((char*)&Temp,sizeof(Temp));
-			while(!fin.eof())
-			{
+			while(!fin.eof()){
 				num_diffprod+= 1;
 				fin.read((char*)&Temp,sizeof(Temp));
 			}
@@ -508,7 +507,7 @@ class Inventory{
 			return num_diffprod;
 		}
 		
-		void updateinv(const long ID){
+		void updateinv(const long ID){															//function to update the information of the specific product
 		    fstream file;
 		    char nme[60];
 		    float prc;
@@ -558,7 +557,7 @@ class Inventory{
 		    }
 		}
 		
-		void decrement_quant(const long ID){							
+		void decrement_quant(const long ID){											//function to do a decrement of the specific item from the inventory when sold							
 			ifstream fin;
 			ofstream fout;
 		    Items Temp;
@@ -588,7 +587,7 @@ class Inventory{
 		    rename("Inventorytemp.dat", "Inventory.dat");
 		}
 		
-		void viewallprod(){
+		void viewallprod(){																//function to view the current status with all the items of the inventory
 		    ifstream fin;
 		    Items Temp;
 		    
@@ -607,7 +606,7 @@ class Inventory{
 		    fin.close();
 		}
 		
-		static void display_specificprod(const long ID){
+		static void display_specificprod(const long ID){								//function to display the current status of the item specific item of the inventory
 		    ifstream fin;
 		    int count = 0;
 		    Items Temp;
@@ -634,7 +633,7 @@ class Inventory{
 		    fin.close();
 		}
 		
-		static void display_specificprod(const long ID, int){								//function overloaded for the display of items for the customer
+		static void display_specificprod(const long ID, int){							//function overloaded for the display of specific item for the customer
 		    ifstream fin;
 		    int count = 0;
 		    Items Temp;
@@ -661,7 +660,7 @@ class Inventory{
 		    fin.close();
 		}
 		
-		static float check_availability(const long ID){
+		static float check_availability(const long ID){											//function to check the presence of the specific item from the inventory
 			ifstream fin;
 		    Items Temp;
 		    
@@ -732,7 +731,7 @@ class Customer{
 			return count_cust;
 		}
 		
-		bool generateBillno(){										//ye date wala part samajhna hai evaluation se pehle
+		bool generateBillno(){															//generates bill number according to today's date
 			ifstream fcheck;
 			fcheck.open("Inventory.dat");
 			
@@ -772,7 +771,7 @@ class Customer{
 				if( (Temp.bill_no[2] != ((day/10) + 48)) || (Temp.bill_no[3] != ((day%10) + 48)) )
 					count_cust = 1;
 				
-				bill_no[0] = (month/10) + 48;
+				bill_no[0] = (month/10) + 48;						
 				bill_no[1] = (month%10) + 48;
 				bill_no[2] = (day/10) + 48;
 				bill_no[3] = (day%10) + 48;
@@ -789,98 +788,14 @@ class Customer{
 			}
 		}
 		
-		void calculateBill(const float price){
+		void calculateBill(const float price){													//function to add the price of each item in the customer's bill
 			bill = bill + price;
 			if(price>0){
 				tot_items++;
 			}
 		}
-		
-		bool search_customer(const char ID[9]){
-			ifstream fin;
-			int fg = 0;
-			Customer Temp;
-			char Temp_bill_no[9] = {'\0'};
-			
-			fin.open("Bill.dat");
-			
-			if( (!fin.is_open()) ){
-				cout << "An Error occured while fetching the Data from the FILE!"<< endl;
-			}
-			else{
-				while(!fin.eof()){
-					if( fin.read((char *)&Temp, sizeof(Temp)) ){
-						char *ptr = Temp.getbill_address();
-						for(int cnt = 0; cnt< 8; cnt++)
-							Temp_bill_no[cnt] = *(ptr + cnt);
-						
-						fflush(stdin);
-						for(int cnt = 0; cnt< 9; cnt++){
-							if(Temp_bill_no[cnt] == ID[cnt]){	
-								fg+= 1;
-							}
-							else{
-								fg = 0;
-								break;
-							}	
-						}
-						if(fg == 9){
-							break;
-						}
-						
-						for(int cnt = 0; cnt< 9; cnt++)
-							Temp_bill_no[cnt] = '\0';	
-					}
-				}
-				fin.close();
 				
-				if(fg != 9){
-					cout<< endl<< "No Customer with this Bill-Number exist!" << endl << endl;
-					return false;
-				}
-				else{
-					*this = Temp;
-					return true;
-				}
-			}
-		}
-		
-		void update_quant(const long ID){						
-			ifstream inv;
-			ofstream temp;
-			Items obj;
-			int quant_updated;
-			
-			inv.open("Inventory.dat");
-			temp.open("Temp.dat");
-			if( (inv.is_open()) ){
-				while(!inv.eof()){
-					if( inv.read((char *)&obj, sizeof(obj)) ){
-						if( ID == obj.getid() ){
-							if(obj.getquant() > 0){
-								quant_updated = obj.getquant() - 1;
-								obj.setquant(quant_updated);
-								temp.write((char *)&obj, sizeof(obj));
-							}
-						}
-						else
-							temp.write((char *)&obj, sizeof(obj));
-					}
-				}
-				inv.close();
-				temp.close();
-				
-				remove("Inventory.dat");
-				rename("Temp.dat", "Inventory.dat");
-			}
-			else{
-				cout<< "An error occured while opening file!"<< endl;
-				temp.close();
-				remove("Temp.dat");
-			}
-		}
-				
-		void displayallrecord(){
+		void displayallrecord(){												//display the bill of each customer
 			ifstream fin;
 			fin.open("Bill.dat");
 			
@@ -902,7 +817,7 @@ class Customer{
 			}
 		}
 		
-		void AddRecord(){
+		void AddRecord(){																	//will add this bill of the customer
 			ofstream fout;
 			fout.open("Bill.dat", ios :: app);
 			
@@ -916,7 +831,7 @@ class Customer{
 			}
 		}
 		
-		void viewreciept(const long *ID, const int num) const{							//for recent customer
+		void viewreciept(const long *ID, const int num) const{								//to view bill for recent customer
 			cout<< "BILLING-ID: ";
 			for(int j = 0; j < 8; j++)
 				cout << bill_no[j];
@@ -986,28 +901,30 @@ class Cashier : public Employees{
 	
 	public:
 		
-		void setcustom_ptr(Customer &Cust){						//Cashier me customer se related koi bhi functionality call krne se pehle ye function call krna must hai
+		void setcustom_ptr(Customer &Cust){								//Cashier me customer se related koi bhi functionality call krne se pehle ye function call krna must hai
 			C = &Cust;
 		}
+		
 		void setname(const char nme[50]){
 			strcpy(name, nme);
 		}
+		
 		void setMobile(const long long mob){
 			Mobile = mob;
 		}
-		bool checkitem(const long ID){					
+		
+		bool checkitem(const long ID){							//calls check_availability for each item from inventory	and call another func to add it's price of available			
 			float price;
 			price = Inventory::check_availability(ID);
 			C->calculateBill(price);
 			return (price > 0);
 		}
-
-			
+		
 		long long getcell(){
 			return Mobile;
 		}
 		
-		void freecustom_ptr(){	
+		void freecustom_ptr(){									//to free the pointer of the customer
 			C = NULL;
 		}	
 		
@@ -1026,16 +943,16 @@ class Cashier : public Employees{
 			}
 			else{
 				cout<< endl<< "NEW FILE IS NOW BEING CREATED!"<< endl;
-				iden = 750;											//first cashier's ID
+				iden = 750;																//first cashier's ID = 750
 			}
 			cout<< endl<< "Assigned-ID is: "<< iden << endl;
 			return iden;
 		}
 		
-		char* setpass(int rnd){									//automatic generator for password
+		char* setpass(int rnd){										//automatic generator for password on the basis of First name, Cashier-id, & 3 random number
 			char password[20] = {'\0'};
 			int random = rnd;
-			int cnt = 0, data[3] = {0}, cnt2 = 0;
+			int cnt = 0, data[3] = {0}, cnt2 = 0;	
 			int num;
 			char *ptr;
 			
@@ -1095,7 +1012,7 @@ class Cashier : public Employees{
 			return ptr;
 		}
 		
-		Cashier(char nme[50], char add[100], char Email[50], long long Mobile){
+		Cashier(char nme[50], char add[100], char Email[50], long long Mobile){										//parametrised cstr
 			customers = 0;
 			int cnt, flag = 0, n;
 			int random, num[3];
@@ -1148,7 +1065,7 @@ class Cashier : public Employees{
 			cout<< endl<< endl<< endl;			
 		}
 		
-		void updaterecord(){
+		void updaterecord(){												//updating/modifying the info of cashier
 			ifstream fin;
 			ofstream fout;
 			int fg = 0;
@@ -1183,7 +1100,7 @@ class Cashier : public Employees{
 			}
 		}
 		
-		void updaterecord(const int ID){
+		void updaterecord(const int ID){									//function overloaded to update the record of the cashiers
 		    ifstream file;
 		    ofstream temp;
 			char nme[50], email[50], address[100];
@@ -1207,7 +1124,7 @@ class Cashier : public Employees{
 			        	fflush(stdin);
 			        	bool chk = false;
 			        	if(opt == '1'){
-							cout << endl<< "Enter Name: ";
+							cout << endl<< "Enter Name (FirstName + LastName): ";
 			   			    do{
 								cin.getline(name, 50);	
 								chk = Exception_handling::checkcashiername(name);
@@ -1284,16 +1201,16 @@ class Cashier : public Employees{
 			customers = 0;
 		}
 		
-		void increamentcustomers(){										//iske baad humesha data ko update houna chahiye Employees file me
+		void increamentcustomers(){												//to do an increment of the customer for each cashier
 			customers+= 1;
 		}
 		
-		void viewreciept(long *ptr, const int num){
+		void viewreciept(long *ptr, const int num){								//function to call the view reciept function for each customer
 			C->viewreciept(ptr, num);
 		}
 		
 		//file-handling functions:
-		bool update_cashierrecord(){
+		bool update_cashierrecord(){											//add the current cashier in the file
 			ofstream fout;
 		    
 			fout.open("Employees.dat", ios::app);    
@@ -1303,13 +1220,12 @@ class Cashier : public Employees{
 		    }
 		    else{
 		        fout.write((char *)this, sizeof(*this));
-		        // fout << endl;
 		        fout.close();
 		       	return true;
 		    }  
 		}
 		
-		bool delete_Cash_Record(const int id)	const{
+		bool delete_Cash_Record(const int id)	const{							//function to delete a specific cashier record
 			ifstream in;
 			ofstream out;
 			int flag = 0;
@@ -1345,7 +1261,7 @@ class Cashier : public Employees{
 				cout<< "No Cashier with this ID exists!"<< endl;	
 		}
 		
-		bool VerifyPassAndEmail(char *mail, char *pass){
+		bool VerifyPassAndEmail(char *mail, char *pass){											//function to verify email and password
 			int flag = 0;
 			ifstream in;
 			in.open("Employees.dat");
@@ -1364,7 +1280,7 @@ class Cashier : public Employees{
 			return flag;
 		}
 		
-		void viewrecord(){										//pure virtual func to display cashier_info
+		void viewrecord(){															//pure virtual func to display cashier_info
 			cout<< endl<< "CASHIER'S-INFORMATION:"<< endl
 				<< "Name:    "<< name << endl
 				<< "ID:      "<< getid() << endl
@@ -1413,12 +1329,12 @@ class Manager : public Employees{
 			Inventory::display_specificprod(Prod_ID);
 		}
 		
-		void remove_cashier(const int ID){
+		void remove_cashier(const int ID){												//function to call the function for the deletion of a cashier record
 			Cashier Temp;
 			Temp.delete_Cash_Record(ID);
 		}
 		
-		void display_salesperday(){
+		void display_salesperday(){														//function to display the amount in Rupees for the sales of each day
 			ifstream Customers;
 			Customers.open("Bill.dat");
 			Customer Temp;
@@ -1462,42 +1378,7 @@ class Manager : public Employees{
 
 		}
 		
-		void display_specificcustomer(const char billno[8]){
-			ifstream file;
-			file.open("Bill.dat");
-			Customer Temp;
-			char *ptr, bill_no[8] = {'\0'};
-			int flag = 0,cnt;
-			if( !file.is_open() ){
-				cout<< endl<< "An error occured while opening file!"<< endl;
-			}
-			else{
-				while(!file.eof()){
-					if( file.read((char*)&Temp, sizeof(Temp)) ){
-						ptr = Temp.getbill_address();
-						for(cnt = 0; cnt<8; cnt++)
-							bill_no[cnt] = *(ptr + cnt);
-						
-						for(cnt =0; cnt<8; cnt++){
-							if(bill_no[cnt] != billno[cnt])
-								break;
-						}
-						
-						if(cnt == 8){
-							cout<< Temp; 
-							cout<< endl;
-							flag = 1;
-							break;
-						}
-					}	
-				}
-				file.close();
-				if(flag == 0)
-					cout<< endl<< "NO SUCH RECORD FOUND!"<< endl;
-			}
-		}
-		
-		void viewrecord(){										//this function should be password protected
+		void viewrecord(){									
 			char *ptr = getpswd();
 			char password[20] = {'\0'};
 			for(int cnt = 0; cnt< 10; cnt++)
@@ -1509,14 +1390,14 @@ class Manager : public Employees{
 
 		void disp_Salesperitem(){
 			Items item1, item2;
-			ifstream inventory_cpy;			//original file
-			ifstream inventory;
+			ifstream inventory_cpy;		
+			ifstream inventory;									
 			double price = 0;
 			int quant = 0;
 			char name[60] = {'\0'};
 			
 			inventory_cpy.open("Inventory.dat");
-			inventory.open("Inventorymain.dat");
+			inventory.open("Inventorymain.dat");					//the main file which uses to create on the first moment of the creation of inventory and adds/deletes product too
 			
 			cout<< endl;
 			if( (inventory_cpy.is_open()) && (inventory.is_open()) ){
@@ -1542,13 +1423,14 @@ class Manager : public Employees{
 		
 };
 
+//Class for supermarket, it has a Has-a relationship with the classes:
 class SuperMarket{				
 	long long totcustomers;
 	int totcashiers;
-	Inventory *Invent;
-	Cashier *C;
-	Manager *M;
-	Customer *Cust;
+	Inventory *Invent;				//has-an inventory
+	Cashier *C;						//has-a cashier
+	Manager *M;						//has-a manager
+	Customer *Cust;					//has-a customer
 	
 	public:
 		
@@ -1561,22 +1443,23 @@ class SuperMarket{
 			totcashiers = 0;
 		}
 		
-		void set_Inventoryptr(Inventory &Inven){
+		void set_Inventoryptr(Inventory &Inven){							//sets the object of inventory in the pointer *Invent
 			Invent = &Inven;	
 		}	
 			
-		void set_Cashierptr(Cashier &Cash){
+		void set_Cashierptr(Cashier &Cash){									//sets the object of cashier in the pointer *C
 			C = &Cash;
 		}
 		
-		void set_Managerptr(Manager &Manag){
+		void set_Managerptr(Manager &Manag){								//sets the object of manager in the pointer *M
 			M = &Manag;
 		}
 		
-		void set_Customerptr(Customer &Custom){
+		void set_Customerptr(Customer &Custom){								//sets the object of customer in the pointer *Cust
 			Cust = &Custom;	
 		}
 		
+		//function to clear the pointers:
 		void clr_Inventoryptr(){
 			Invent = NULL;	
 		}	
@@ -1593,7 +1476,7 @@ class SuperMarket{
 			Cust = NULL;	
 		}
 		
-		void find_totalcashiers(){
+		void find_totalcashiers(){												//calculates the total cashiers currently employed in the supermarket
 			ifstream Read;
 			Cashier Temp;
 			totcashiers = 0;
@@ -1611,10 +1494,11 @@ class SuperMarket{
 			}
 		}
 
-		void find_totalcustomers(){
+		void find_totalcustomers(){												//calculates the total cashiers currently employed in the supermarket
 			totcustomers = 0;
 			ifstream Read;
 			Cashier Temp;
+			
 			Read.open("Employees.dat");
 			if(Read.is_open()){
 				while(!Read.eof()){
@@ -1641,7 +1525,7 @@ class SuperMarket{
 			return (totcashiers + 1);
 		}
 		
-		void disp_emprecords(){		
+		void disp_emprecords(){													//function to display the information of each cashier
 			Cashier Temp;
 			ifstream in;
 			
@@ -1661,7 +1545,7 @@ class SuperMarket{
 				cout<< endl<< "An error occured while fetching the records!"<< endl;
 		}
 		
-		void disp_saleseachday(){	//Total sales of each day
+		void disp_saleseachday(){										//display Total sales of each day with each customer's info
 			ifstream Customers;
 			char date[2] = {'\0'};
 			Customer Temp;
@@ -1728,7 +1612,7 @@ int main(){
 		
 		system("cls");
 		
-		if(choice == '0'){ // Cashier
+		if(choice == '0'){ 												// Cashier's Module
 			char option = '\0';
 			bool chk=false;
 			cout << "ENTER CASHIER'S LOGIN INFORMATION:"<< endl;
@@ -1907,7 +1791,7 @@ int main(){
 			}while(true);
 		}
 			
-		else if(choice == '1'){ 												// Manager
+		else if(choice == '1'){ 													// Manager's module
 			cout << "ENTER MANAGER'S LOGIN INFORMATION:"<< endl;		
 			while(true){
 				for(int j=0; j<50; j++)
@@ -1962,7 +1846,7 @@ int main(){
 					char mob[12]={'\0'};
 					char name[50] = {'\0'}, email[50] = {'\0'}, pass[20] = {'\0'}, address[100] = {'\0'};
 					bool chk=false;
-					cout << "\nEnter the information of the New-Cashier:"<< endl<< "Name: ";
+					cout << "\nEnter the information of the New-Cashier:"<< endl<< "Name (FirstName + LastName): ";
 					fflush(stdin);
 					do{
 						cin.getline(name, 50);	
